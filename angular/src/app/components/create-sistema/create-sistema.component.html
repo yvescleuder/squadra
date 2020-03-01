@@ -1,0 +1,45 @@
+<div class="container wrapper wrapper2">
+  <div class="row">
+
+    <!-- Form -->
+    <div class="col-md-12">
+      <h3>Cadastrar sistema</h3>
+      <div class="card-body">
+        <form (ngSubmit)="f.form.valid && createSistema(f)" #f="ngForm" novalidate>
+          <div class="form-group">
+            <label for="descricao">Descrição <strong><span class="text-danger">*</span></strong></label>
+            <input type="text" [(ngModel)]="sistema.descricao" id="descricao" name="descricao" #descricao="ngModel" [maxlength]="100" class="form-control" [ngClass]="{ 'is-invalid': f.submitted && descricao.invalid }" placeholder="Digite a Descrição">
+            <div *ngIf="f.submitted && descricao.invalid" class="invalid-feedback">
+              <div *ngIf="descricao.errors.required">Dado obrigatório não informado.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="sigla">Sigla <strong><span class="text-danger">*</span></strong></label>
+            <input type="text" [(ngModel)]="sistema.sigla" id="sigla" name="sigla" #sigla="ngModel" required class="form-control" [maxlength]="10" [ngClass]="{ 'is-invalid': f.submitted && sigla.invalid }" placeholder="Digite a Sigla">
+            <div *ngIf="f.submitted && sigla.invalid" class="invalid-feedback">
+              <div *ngIf="sigla.errors.required">Dado obrigatório não informado.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" [(ngModel)]="sistema.email" id="email" name="email" #email="ngModel" email="true" [maxlength]="100" class="form-control" [ngClass]="{ 'is-invalid': f.submitted && email.invalid }" placeholder="Digite o E-mail">
+            <div *ngIf="f.submitted && email.invalid" class="invalid-feedback">
+              <div *ngIf="email.errors.email">E-mail inválido.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="URL">URL</label>
+            <input type="text" [(ngModel)]="sistema.url" id="url" name="url" #url="ngModel" class="form-control" [maxlength]="50" [ngClass]="{ 'is-invalid': f.submitted && url.invalid }" placeholder="Digite a URL">
+            <div *ngIf="f.submitted && url.invalid" class="invalid-feedback">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Salvar</button>
+          <button type="reset" class="btn btn-secondary" (click)="router.navigate(['/sistema']);">Cancelar</button>
+        </form>
+        <div class="alert alert-danger" *ngIf="error">
+          <h6 align="center">{{ error }}</h6>
+        </div>
+    </div>
+
+  </div>
+</div>
