@@ -38,7 +38,7 @@
         </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let sistema of loadedSistemas | paginate: {itemsPerPage: 10, currentPage: paginaAtual}">
+          <tr *ngFor="let sistema of loadedSistemas | paginate: {itemsPerPage: 50, currentPage: paginaAtual}">
             <td>{{ sistema.descricao }}</td>
             <td>{{ sistema.sigla }}</td>
             <td>{{ sistema.email }}</td>
