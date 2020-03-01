@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {Sistema} from './models/sistema';
 import {catchError, map, retry} from 'rxjs/operators';
@@ -32,20 +32,23 @@ export class ApiService {
    * @param sistema
    */
   searchSistema(sistema) {
-    let descricao = '';
-    let sigla = '';
-    let email = '';
+    // Variavel para manipular a query string
+    let searchParams = new HttpParams();
     // Verifica se os parametros estão chegando para montar a query string.
     if (sistema.descricao) {
-      descricao = '&descricao=' + sistema.descricao;
+      searchParams = searchParams.append('descricao', sistema.descricao);
     }
     if (sistema.sigla) {
-      sigla = '&sigla=' + sistema.sigla;
+      searchParams = searchParams.append('sigla', sistema.sigla);
     }
     if (sistema.email) {
-      email = '&email=' + sistema.email;
+      searchParams = searchParams.append('email', sistema.email);
     }
-    return this.http.get<Sistema>(this.api + '?' + descricao + sigla + email)
+
+    return this.http.get<Sistema>(this.api,
+      {
+        params: searchParams
+      })
       .pipe(
         map(responseData => {
           const sistemasArray: Sistema[] = [];
