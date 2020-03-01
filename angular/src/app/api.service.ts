@@ -53,9 +53,7 @@ export class ApiService {
         map(responseData => {
           const sistemasArray: Sistema[] = [];
           for (const key in responseData) {
-            if (responseData.hasOwnProperty(key)) {
-              sistemasArray.push({ ...responseData[key], id: key });
-            }
+            sistemasArray.push(responseData[key]);
           }
           return sistemasArray;
         })
