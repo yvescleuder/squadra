@@ -8,7 +8,7 @@
         <form (ngSubmit)="f.form.valid && createSistema(f)" #f="ngForm" novalidate>
           <div class="form-group">
             <label for="descricao">Descrição <strong><span class="text-danger">*</span></strong></label>
-            <input type="text" [(ngModel)]="sistema.descricao" id="descricao" name="descricao" #descricao="ngModel" [maxlength]="100" class="form-control" [ngClass]="{ 'is-invalid': f.submitted && descricao.invalid }" placeholder="Digite a Descrição">
+            <input type="text" [(ngModel)]="sistema.descricao" id="descricao" name="descricao" #descricao="ngModel" required [maxlength]="100" class="form-control" [ngClass]="{ 'is-invalid': f.submitted && descricao.invalid }" placeholder="Digite a Descrição">
             <div *ngIf="f.submitted && descricao.invalid" class="invalid-feedback">
               <div *ngIf="descricao.errors.required">Dado obrigatório não informado.</div>
             </div>
@@ -34,7 +34,7 @@
             </div>
           </div>
           <button type="submit" class="btn btn-primary">Salvar</button>
-          <button type="reset" class="btn btn-secondary" (click)="router.navigate(['/sistema']);">Cancelar</button>
+          <button type="button" class="btn btn-secondary" (click)="router.navigate(['/sistema']);">Voltar</button>
         </form>
         <div class="alert alert-danger" *ngIf="error">
           <h6 align="center">{{ error }}</h6>
