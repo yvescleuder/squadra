@@ -3,4 +3,5 @@ export interface Sistema {
   sigla: string;
   email: string;
   url: string;
+  status: string;
 }

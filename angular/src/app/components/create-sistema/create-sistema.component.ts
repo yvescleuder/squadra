@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ApiService} from "../../api.service";
 import {Sistema} from "../../models/sistema";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-create-sistema',
@@ -37,9 +38,13 @@ export class CreateSistemaComponent implements OnInit {
     // Uma nova requisição tem que retirar a mensagem de erro
     this.error = null;
     this.apiService.createSistema(this.sistema).subscribe((result) => {
-      alert(result);
-      // Redireciona o usuário para a tela de pesquisar.
-      this.router.navigate(['/sistema']);
+      Swal.fire({
+        text: result,
+        icon: 'success'
+      }).then((result) => {
+          // Redireciona o usuário para a tela de pesquisar.
+          this.router.navigate(['/sistema']);
+      });
     }, error => {
       this.error = error.error;
     });

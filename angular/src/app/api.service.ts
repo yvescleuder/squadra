@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/c
 import {Observable, throwError} from 'rxjs';
 import {Sistema} from './models/sistema';
 import {catchError, map, retry} from 'rxjs/operators';
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,6 @@ import {catchError, map, retry} from 'rxjs/operators';
 export class ApiService {
 
   constructor(private http: HttpClient) { }
-
-  private api = 'http://localhost:8000/sistema/';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,7 +22,7 @@ export class ApiService {
    * @param sistema
    */
   createSistema(sistema: Sistema): Observable<Sistema> {
-    return this.http.post<Sistema>(this.api + 'store/', JSON.stringify(sistema), this.httpOptions);
+    return this.http.post<Sistema>(environment.api + 'store/', JSON.stringify(sistema), this.httpOptions);
   }
 
   /**
@@ -45,7 +44,7 @@ export class ApiService {
       searchParams = searchParams.append('email', sistema.email);
     }
 
-    return this.http.get<Sistema>(this.api,
+    return this.http.get<Sistema>(environment.api,
       {
         params: searchParams
       })

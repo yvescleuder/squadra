@@ -8,6 +8,7 @@ import { SearchSistemaComponent } from './components/search-sistema/search-siste
 import { CreateSistemaComponent } from './components/create-sistema/create-sistema.component';
 import {ApiService} from "./api.service";
 import {FormsModule} from "@angular/forms";
+import { NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {FormsModule} from "@angular/forms";
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

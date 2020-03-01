@@ -3,7 +3,6 @@ import {Sistema} from "../../models/sistema";
 import {ApiService} from "../../api.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
-import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-search-sistema',
@@ -15,6 +14,7 @@ export class SearchSistemaComponent implements OnInit {
   sistemas = {} as Sistema;
   loadedSistemas: Sistema[] = [];
   error = null;
+  paginaAtual: number = 1;
 
   /**
    * Instancia a ApiService para ser utilizada
