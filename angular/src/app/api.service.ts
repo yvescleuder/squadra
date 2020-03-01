@@ -61,17 +61,4 @@ export class ApiService {
         })
       );
   }
-
-  handleError(error: HttpErrorResponse) {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // Erro ocorreu no lado do client
-      errorMessage = error.message;
-    } else {
-      // Erro na API
-      errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
-    }
-
-    return throwError(errorMessage);
-  }
 }
